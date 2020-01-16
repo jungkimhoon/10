@@ -1,0 +1,43 @@
+package swing;
+
+public class ShapeDTO {
+	private int x1, x2, y1, y2, z1, z2;
+	private int color;
+	private String shape;
+	private String fill;
+	
+	public ShapeDTO(int x1, int x2, int y1, int y2, int z1, int z2,
+					String shape, String fill) {
+		this.x1 = x1;
+		this.x2 = x2;
+		this.y1 = y1;
+		this.y2 = y2;
+		this.z1 = z1;
+		this.z2 = z2;
+		this.shape = shape;
+		this.fill = fill;
+				
+	}
+}
+
+/* ShapeDTO에 저장할 정보
+ * ArrayList에 잡아라.
+ * 기억해둘 좌표  6개..
+ * 채우기
+ * 도형 모양
+ * 색
+ * 
+ * 
+ * 1. 도형을 그린다.
+ * 2. 도형을 ShapeDTO에 저장한다.
+ * 3. ArrayList에 보관한다.
+ * ------------------------
+ * 
+ * 1. ArrayList에 보관된 ShapeDTO의 내용을 꺼내서 그린다.
+ * 2. 새로운 도형을 그린다.
+ * 
+ * 
+ */
+
+
+

@@ -1,0 +1,102 @@
+package prac;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
+public class ScoreImpl implements Score{
+	private ScoreForm sf;
+	private ScoreDTO dto;
+	private ArrayList<ScoreDTO> list;
+	private File file;
+	
+	public ScoreImpl(ScoreForm sf){
+		list = new ArrayList<ScoreDTO>();
+		this.sf = sf;
+	}
+	@Override
+	public void input(ScoreDTO dto) {
+		list.add(dto);
+	}
+
+	@Override
+	public void print(JTextArea output) {
+		output.setText("학번          	 이름   국어   영어   수학   총합   평균\n");
+		for(ScoreDTO tt : list) {
+			tt.calc();
+			output.append(tt.getHak()+"   "+tt.getName()+"  "+tt.getKor()+"  "+
+					tt.getEng()+"  "+tt.getMath()+tt.getTot()+tt.getAvg()+"\n");	
+		}
+		
+	}
+
+	@Override
+	public void search(JTextArea output) {
+		
+		String id = JOptionPane.showInputDialog("학번 입력해라");
+		for(ScoreDTO tt : list) {
+			tt.calc();
+			if(tt.getHak().equals(id)){
+			output.setText("학번        이름   국어   영어   수학   총합   평균\n"+tt.getHak()+"   "+tt.getName()+"  "+tt.getKor()+"  "+
+					tt.getEng()+"  "+tt.getMath()+tt.getTot()+tt.getAvg()+"\n");	
+			}
+		}
+	}
+
+	@Override
+	public void tot_desc() {
+		
+	}
+
+	
+	@Override
+	public void save() {
+		JFileChooser chooser = new JFileChooser();
+		int result = chooser.showSaveDialog(sf); //showsavedialog
+		if(result == JFileChooser.APPROVE_OPTION) {
+			file = chooser.getSelectedFile();//선택한 경로와 저장할 파일명
+		}
+		try {
+			if(file == null) return;
+			BufferedWriter br = new BufferedWriter(new FileWriter(file));
+			String str = sf.getScore().getText();
+			br.write(str);
+		    br.close();
+		    
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	
+		
+	}
+
+	@Override
+	public void load() {
+		
+		
+	}
+	
+	class Descending implements Comparator {
+		@Override
+		public int compare(Object arg0, Object arg1) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+	}
+	
+		
+	
+	
+	
+
+}

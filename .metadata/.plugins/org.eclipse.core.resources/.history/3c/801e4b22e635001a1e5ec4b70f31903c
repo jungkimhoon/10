@@ -1,0 +1,173 @@
+package swing;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Paint;
+import java.util.ArraymsPaint.list;
+
+
+public class DrCanvas extends Canvas{
+	private int x1,x2,y1,y2, btn, col;
+	private MsPaint msPaint;
+	private int shape, fill;
+	
+	
+	public DrCanvas(MsPaint msPaint) {
+		this.msPaint = msPaint;
+		this.setBackground(new Color(255,200,255));
+	}
+	
+
+	@Override
+	public void paint(Graphics g) {
+		ArraymsPaint.list<ShapeDTO> msPaint.list = new ArraymsPaint.list<ShapeDTO>();
+			
+		int x1 = Integer.parseInt(msPaint.getX1T().getText().trim());
+		int y1 = Integer.parseInt(msPaint.getY1T().getText().trim());
+		int x2 = Integer.parseInt(msPaint.getX2T().getText().trim());
+		int y2 = Integer.parseInt(msPaint.getY2T().getText().trim());
+		int z1 = Integer.parseInt(msPaint.getZ1T().getText().trim());
+		int z2 = Integer.parseInt(msPaint.getZ2T().getText().trim());
+		
+		
+		switch(msPaint.getCombo().getSelectedIndex()) {
+		case 0 : g.setColor(new Color(0,0,0)); col=0; break;
+		case 1 : g.setColor(new Color(255,128,0)); col=1; break;
+		case 2 : g.setColor(new Color(255,255,0)); col=2; break;
+		case 3 : g.setColor(new Color(0,255,0)); col=3; break;
+		case 4 : g.setColor(new Color(0,0,255)); col=4; break;
+		case 5 : g.setColor(new Color(36,46,220)); col=5; break;
+		case 6 : g.setColor(new Color(109,53,202)); col=6; break;
+		}
+		
+		
+		if(msPaint.getFill().isSelected()) {//채워진 도형
+			if(msPaint.getLine().isSelected()) {
+				shape = 1; fill = 1;
+				g.drawLine(x1, y1, x2, y2);
+			}
+			else if(msPaint.getCircle().isSelected()) {
+				shape = 2; fill = 1;
+				g.fillOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			}
+			else if(msPaint.getRect().isSelected()) {
+				shape = 3; fill = 1;
+				g.fillRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			}
+			else if(msPaint.getRounRect().isSelected()) {
+				shape = 4; fill = 1;
+				g.fillRoundRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2-x1), Math.abs(y2-y1),z1,z2);
+			}
+			
+		}else {//빈 도형
+			if(msPaint.getLine().isSelected()) {
+				shape = 1; fill = 0;
+				g.drawLine(x1, y1, x2, y2);
+			}
+			else if(msPaint.getCircle().isSelected()) {
+				shape = 2; fill = 0;
+				g.drawOval(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			}
+			else if(msPaint.getRect().isSelected()) {
+				shape = 3; fill = 0;
+				g.drawRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			}
+			else if(msPaint.getRounRect().isSelected()) {
+				shape = 4; fill = 0;
+				g.drawRoundRect(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x2-x1), Math.abs(y2-y1),z1,z2);
+			}
+		}
+	
+
+		for(int i=0; i<msPaint.list.size(); i++) {
+			
+			int lx1 = msPaint.list.get(i).getX1();
+			int ly1 = msPaint.list.get(i).getY1();
+			int lx2 = msPaint.list.get(i).getX2();
+			int ly2 = msPaint.list.get(i).getY2();
+			int lz1 = msPaint.list.get(i).getZ1();
+			int lz2 = msPaint.list.get(i).getZ2();
+			
+			
+			switch(msPaint.list.get(i).getColor()) {
+			case 0 : g.setColor(new Color(0,0,0)); break;
+			case 1 : g.setColor(new Color(255,128,0)); break;
+			case 2 : g.setColor(new Color(255,255,0)); break;
+			case 3 : g.setColor(new Color(0,255,0)); break;
+			case 4 : g.setColor(new Color(0,0,255)); break;
+			case 5 : g.setColor(new Color(36,46,220)); break;
+			case 6 : g.setColor(new Color(109,53,202)); break;
+			
+			}
+			
+			if(msPaint.list.get(i).getFill() == 1) {//채워진 도형
+				if(msPaint.list.get(i).getShape()==1) {					
+					g.drawLine(lx1, ly1, lx2, ly2);
+				}
+				else if(msPaint.list.get(i).getShape()==2) {
+					g.fillOval(Math.min(lx1, lx2), Math.min(ly1, ly2), Math.abs(lx2-lx1), Math.abs(ly2-ly1));
+				}
+				else if(msPaint.list.get(i).getShape()==3) {
+					
+					g.fillRect(Math.min(lx1, lx2), Math.min(ly1, ly2), Math.abs(lx2-lx1), Math.abs(ly2-ly1));
+				}
+				else if(msPaint.list.get(i).getShape()==4) {
+					
+					g.fillRoundRect(Math.min(lx1, lx2), Math.min(ly1, ly2), Math.abs(lx2-lx1), Math.abs(ly2-ly1),lz1,lz2);
+				}
+				
+			}else {//빈 도형
+				if(msPaint.list.get(i).getShape()==1) {
+				
+					g.drawLine(lx1, ly1, lx2, ly2);
+				}
+				else if(msPaint.list.get(i).getShape()==2) {
+					
+					g.drawOval(Math.min(lx1, lx2), Math.min(ly1, ly2), Math.abs(lx2-lx1), Math.abs(ly2-ly1));
+				}
+				else if(msPaint.list.get(i).getShape()==3) {
+					
+					g.drawRect(Math.min(lx1, lx2), Math.min(ly1, ly2), Math.abs(lx2-lx1), Math.abs(ly2-ly1));
+				}
+				else if(msPaint.list.get(i).getShape()==4) {
+				
+					g.drawRoundRect(Math.min(lx1, lx2), Math.min(ly1, ly2), Math.abs(lx2-lx1), Math.abs(ly2-ly1),lz1,lz2);
+				}
+			}
+		
+			
+//			
+//		}//for
+//		
+//	}
+//	@Override
+//	public void update(Graphics g) {
+//		// TODO Auto-generated method stub
+//		paint(g);
+//	}
+
+	public void setX1(int x1) {
+		this.x1 = x1;
+	}
+
+	public void setX2(int x2) {
+		this.x2 = x2;
+	}
+
+	public void setY1(int y1) {
+		this.y1 = y1;
+	}
+
+	public void setY2(int y2) {
+		this.y2 = y2;
+	}
+	public void setbtn(int btn) {
+		this.btn = btn;
+	}
+
+	public void setCol(int col) {
+		this.col = col;
+	}
+	
+}

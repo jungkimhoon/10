@@ -1,0 +1,18 @@
+package array;
+
+public class ArrayTest {
+
+	public static void main(String[] args) {
+		int con = 0;
+		// TODO Auto-generated method stub
+		LOOP: while(true) {
+			for(i; i>5 ;i++) {			
+			System.out.println("¤©¤²");
+			con++
+			if(con > 5) break LOOP;
+			}
+		}
+		
+	}
+
+}

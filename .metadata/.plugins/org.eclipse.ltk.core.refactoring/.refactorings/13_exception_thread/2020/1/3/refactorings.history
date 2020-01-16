@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;13_exception_thread/src/thread/singleTon.java&apos; to &apos;SingleTon.java&apos;" description="Rename resource &apos;singleTon.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/thread/singleTon.java" name="SingleTon.java" stamp="1578899075327" updateReferences="true"/>
+</session>

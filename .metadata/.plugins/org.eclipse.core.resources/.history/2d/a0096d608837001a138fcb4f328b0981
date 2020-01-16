@@ -1,0 +1,67 @@
+package paintt;
+
+import java.awt.Checkbox;
+
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTextField;
+
+public class MsPaint extends JFrame{
+	
+	private JTextField x1T, x2T, y1T, y2T, z1T, z2T;
+	private JLabel x1L, x2L, y1L, y2L, z1L, z2L;
+	private Checkbox fill;
+	private JRadioButton line, circle, rect, roundRect, pen;
+	private JComboBox combo;
+	private DrCanvas can;
+	
+	
+	public MsPaint() {
+		
+		x1T = new JTextField("0",10);
+		x2T = new JTextField("0",10);
+		y1T = new JTextField("0",10);
+		y2T = new JTextField("0",10);
+		z1T = new JTextField("0",10);
+		z2T = new JTextField("0",10);
+		
+		x1L = new JLabel("x1");
+		x2L = new JLabel("x2");
+		y1L = new JLabel("y1");
+		y2L = new JLabel("y2");
+		z1L = new JLabel("z1");
+		z2L = new JLabel("z2");
+		
+		fill = new Checkbox("Ã¤¿ì±â");
+		
+		JPanel up = new JPanel();
+		up.add(x1L);
+		up.add(x1T);
+		up.add(y1L);
+		up.add(y1T);
+		up.add(x2L);
+		up.add(x2T);
+		up.add(y2L);
+		up.add(y2T);
+		up.add(z1L);
+		up.add(z1T);
+		up.add(z2L);
+		up.add(z2T);
+		up.add(fill);
+		
+		add("North",up);
+		
+		setVisible(true);
+		setBounds(300,300,500,600);
+		
+	}
+	
+	public static void main(String[] args) {
+		new MsPaint();
+	}
+		
+}

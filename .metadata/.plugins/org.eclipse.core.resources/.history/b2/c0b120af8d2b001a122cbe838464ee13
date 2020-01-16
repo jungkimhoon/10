@@ -1,0 +1,26 @@
+package inheritance;
+
+import java.awt.Color;
+import java.awt.Frame;
+
+
+public class WindowTest extends Frame {
+	public WindowTest() {
+		//setTitle("ㅎㅇ"); 타이틀 생성
+		new Frame("내가 만든 윈도우");
+		
+		setBackground(new Color(78,69,243));
+		//this.setSize(300,400);
+		setBounds(800,400,300,400);
+		setVisible(true);
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		new WindowTest();
+		
+		
+	}
+
+}

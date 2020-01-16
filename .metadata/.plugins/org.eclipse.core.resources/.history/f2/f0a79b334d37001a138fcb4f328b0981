@@ -1,0 +1,132 @@
+package praccorrect;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class ScoreForm extends JFrame implements ActionListener{
+	private JLabel hakL, nameL, korL, engL, mathL;
+	private JTextField  hakT, nameT, korT, engT, mathT;
+	private JButton inputB, outputB, searchB, rankB, saveB, readB;
+	private Score score; // score 인터페이스 생성
+	
+	public ScoreForm() {
+		
+		
+		//라벨 생성 
+		hakL = new JLabel("학번");
+		nameL = new JLabel("이름");
+		korL = new JLabel("국어");
+		engL = new JLabel("영어");
+		mathL = new JLabel("수학");
+		
+		//텍스트필드 생성
+		hakT = new JTextField(30);
+		nameT = new JTextField(30);
+		korT = new JTextField(30);
+		engT = new JTextField(30);
+		mathT = new JTextField(30);
+		
+		//버튼 생성 
+		inputB = new JButton("입력"); 
+		outputB = new JButton("출력"); 
+		searchB = new JButton("학번검색"); 
+		rankB = new JButton("순위"); 
+		saveB = new JButton("파일저장"); 
+		readB = new JButton("파일읽기"); 
+		
+		score = new ScoreImpl();
+		
+		//버튼 패널 생성 
+		JPanel bP = new JPanel(new GridLayout(1,6,5,3));
+		bP.add(inputB);
+		bP.add(outputB);
+		bP.add(searchB);
+		bP.add(rankB);
+		bP.add(saveB);
+		bP.add(readB);
+		
+		JPanel p1 = new JPanel();
+		JPanel p2 = new JPanel();
+		JPanel p3 = new JPanel();
+		JPanel p4 = new JPanel();
+		JPanel p5 = new JPanel();
+		
+		//왼쪽 라벨 패널 
+		JPanel lP = new JPanel(new GridLayout(5,1,3,1));
+		p1.add(hakL); p2.add(nameL);
+		p3.add(korL); p4.add(engL);
+		p5.add(mathL);
+		
+		lP.add(p1); lP.add(p2);
+		lP.add(p3); lP.add(p4);
+		lP.add(p5);
+		
+		//왼쪽 텍스트 패널 
+		JPanel tP = new JPanel(new GridLayout(5,1,1,3));
+		p1.add(hakT); p2.add(nameT);
+		p3.add(korT); p4.add(engT);
+		p5.add(mathT);
+		
+		tP.add(p1); tP.add(p2);
+		tP.add(p3); tP.add(p4);
+		tP.add(p5);
+		
+		//우측 텍스트 에어리어생성
+		JPanel taP = new JPanel();
+		
+		JTextArea area = new JTextArea(25,35);
+		taP.add(area);
+		
+		//컨테이너 생성 
+		Container con = this.getContentPane();
+		con.add("South", bP);
+		con.add("West", lP);
+		con.add("West", tP);
+		con.add("East", taP);
+	
+		//기본 틀 생성
+		setBounds(200,200,800,400);
+		setVisible(true);
+		event();
+	}
+	// 이벤트 처리 
+	public void event(){
+		inputB.addActionListener(this); 
+		outputB.addActionListener(this);
+		searchB.addActionListener(this);
+		rankB.addActionListener(this);
+		saveB.addActionListener(this);
+		readB.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==inputB) {
+			ScoreDTO dto = new ScoreDTO(
+					hakT.getText(),
+					nameT.getText(),
+					Integer.parseInt(korT.getText().trim()),
+					Integer.parseInt(engT.getText().trim()),
+					Integer.parseInt(mathT.getText().trim()));
+			dto.calc(); //총점, 평균 계산
+			score.input(dto);		
+			JOptionPane.showMessageDialog(this, "등록완료");
+		}
+		
+	}
+	
+	
+	
+	
+}

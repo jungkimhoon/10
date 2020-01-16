@@ -1,0 +1,10 @@
+package praccorrect;
+
+public class ScoreForm {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

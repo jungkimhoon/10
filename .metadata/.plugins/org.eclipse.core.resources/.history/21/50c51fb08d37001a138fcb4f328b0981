@@ -1,0 +1,9 @@
+package paintt;
+
+public class ShapeDTO {
+	enum Figure{
+		LINE, CIRCLE, RECT, ROUNDRECT
+	}
+	
+	
+}

@@ -1,0 +1,64 @@
+package prac;
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
+public class ScoreImpl implements Score{
+	private ScoreForm sf;
+	private ScoreDTO dto;
+	private ArrayList<ScoreDTO> list;
+	
+	public ScoreImpl(ScoreForm sf){
+		list = new ArrayList<ScoreDTO>();
+		this.sf = sf;
+	}
+	@Override
+	public void input(ScoreDTO dto) {
+		list.add(dto);
+	}
+
+	@Override
+	public void print(JTextArea output) {
+		dto.calc();
+		output.setText("학번          	 이름   국어   영어   수학   총합   평균\n");
+		for(ScoreDTO tt : list) {
+			tt.calc();
+			output.append(tt.getHak()+"   "+tt.getName()+"  "+tt.getKor()+"  "+
+					tt.getEng()+"  "+tt.getMath()+tt.getTot()+"\n");	
+		}
+		
+	}
+
+	@Override
+	public void search(JTextArea output) {
+		
+		String id = JOptionPane.showInputDialog("학번 입력해라");
+		for(ScoreDTO tt : list) {
+			tt.calc();
+			if(tt.getHak().equals(id)){
+			output.setText("학번        이름   국어   영어   수학   총합   평균\n"+tt.getHak()+"   "+tt.getName()+"  "+tt.getKor()+"  "+
+					tt.getEng()+"  "+tt.getMath()+tt.getTot()+"\n");	
+			}
+		}
+	}
+
+	@Override
+	public void tot_desc() {
+	
+	}
+
+	@Override
+	public void save() {
+	
+		
+	}
+
+	@Override
+	public void load() {
+		
+		
+	}
+
+}

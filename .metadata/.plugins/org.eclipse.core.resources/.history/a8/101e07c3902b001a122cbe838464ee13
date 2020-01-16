@@ -1,0 +1,36 @@
+package inheritance;
+
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Window;
+
+
+public class WindowTest extends Frame {
+	public WindowTest() {
+		//setTitle("ㅎㅇ"); 타이틀 생성
+		super("내가 만든 타이틀"); //부모 호출
+		//new Frame("내가 만든 윈도우").setVisible(true); 새로운 창으로 하나 더 띄움
+		
+		
+		setBackground(new Color(78,69,243));
+		//this.setSize(300,400);
+		setBounds(800,400,300,400);
+		setVisible(true);
+	}
+
+	
+	@Override
+	public void paint(Graphics g) { //Graphics 에서 도구 제공
+		g.drawLine(50, 0, 150, 400);
+	}
+
+
+
+	public static void main(String[] args) {
+		new WindowTest();
+		
+		
+	}
+
+}

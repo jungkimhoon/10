@@ -1,0 +1,9 @@
+package a1;
+
+import java.io.Serializable;
+
+public class ScoreDTO implements Serializable {
+	
+	
+	
+}

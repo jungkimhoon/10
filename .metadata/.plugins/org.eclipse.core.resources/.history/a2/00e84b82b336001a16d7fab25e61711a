@@ -1,0 +1,166 @@
+package prac;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+
+//JFrame 창 만들기
+public class ScoreForm extends JFrame{
+	private JLabel hakL, nameL, korL, engL, mathL;
+	private JTextField hakT, nameT, korT, engT, mathT;
+	private JTextArea score;
+	private JButton input, output, search, rank, save, read;
+	private ArrayList<ScoreDTO> list;
+	private ScoreImpl scip;
+	
+	public ScoreForm(){
+		setLayout(null);
+		
+		scip = new ScoreImpl(this);
+		list = new ArrayList<ScoreDTO>();
+		
+		hakL = new JLabel("학번");
+		nameL = new JLabel("이름");
+		korL = new JLabel("국어");
+		engL = new JLabel("영어");
+		mathL = new JLabel("수학");
+		
+		hakT = new JTextField(40);
+		nameT = new JTextField(40);
+		korT = new JTextField(40);
+		engT = new JTextField(40);
+		mathT = new JTextField(40);
+		
+		hakL.setBounds(5, 20, 30, 30);
+		nameL.setBounds(5, 60, 30, 30);
+		korL.setBounds(5, 100, 30, 30);
+		engL.setBounds(5, 140, 30, 30);
+		mathL.setBounds(5, 180, 30, 30);
+		
+		hakT.setBounds(35, 20, 250, 30);
+		nameT.setBounds(35, 60, 250, 30);
+		korT.setBounds(35, 100, 250, 30);
+		engT.setBounds(35, 140, 250, 30);
+		mathT.setBounds(35, 180, 250, 30);
+		
+		score = new JTextArea("이름");
+		score.setBounds(300, 20, 280, 190);
+		score.setLineWrap(true);
+		input = new JButton("입력");
+		output = new JButton("출력");
+		search = new JButton("학번검색");
+		rank = new JButton("순위");
+		save = new JButton("파일저장");
+		read = new JButton("파일읽기");
+		
+		input.setBounds(0, 280, 90, 30);
+		output.setBounds(100, 280, 90, 30);
+		search.setBounds(200, 280, 90, 30);
+		rank.setBounds(300, 280, 90, 30);
+		save.setBounds(400, 280, 90, 30);
+		read.setBounds(500, 280, 90, 30);
+		
+
+		
+		Container c = getContentPane();
+		
+		c.add(hakL);
+		c.add(nameL);
+		c.add(korL);
+		c.add(engL);
+		c.add(mathL);
+		c.add(hakT);
+		c.add(nameT);
+		c.add(korT);
+		c.add(engT);
+		c.add(mathT);
+		c.add(score);
+		c.add(input);
+		c.add(output);
+		c.add(search);
+		c.add(rank);
+		c.add(save);
+		c.add(read);
+		
+		
+		
+		setBounds(300,300,605,350);
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		input.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("입력");
+				ScoreDTO sdto = new ScoreDTO();
+				sdto.setHak(hakT.getText());
+				sdto.setName(nameT.getText());
+				sdto.setKor(Integer.parseInt(korT.getText()));
+				sdto.setMath(Integer.parseInt(mathT.getText()));
+				sdto.setEng(Integer.parseInt(engT.getText()));
+				
+				list.add(sdto);
+			}
+		});
+		
+		output.addActionListener(new ActionListener() {
+			String num = null; String dlfma= null; String gks= null; 
+			String tn= null; String en= null; 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for(ScoreDTO tt : list) {
+					System.out.println(tt.getHak());
+					num = num + tt.getHak();
+					dlfma = dlfma + tt.getName();
+					gks = gks + tt.getKor();
+					tn = tn + tt.getMath();
+					en = en + tt.getEng();
+					System.out.println(tt.getHak());
+					score.setText(num+dlfma+gks+tn+en+"\n");
+				}
+			}
+		});
+		
+	}
+	
+	public static void main(String[] args) {
+		new ScoreForm();
+	}
+
+	public JTextField gethakT() {
+		return hakT;
+	}
+
+	public JTextField getNameT() {
+		return nameT;
+	}
+
+	public JTextField getKorT() {
+		return korT;
+	}
+
+	public JTextField getEngT() {
+		return engT;
+	}
+
+	public JTextField getMathT() {
+		return mathT;
+	}
+	
+	public ArrayList<ScoreDTO> getList(){
+		return list;
+	}
+	
+}

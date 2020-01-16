@@ -1,0 +1,57 @@
+package io;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+public class MenuPane extends JMenuBar {
+	private JMenu fileM, editM, viewM;
+	private JMenuItem newM, openM, saveM, cutM, copyM, pasteM;
+
+	public MenuPane() {
+		fileM = new JMenu("메뉴");
+		editM = new JMenu("수정");
+		viewM = new JMenu("보기");
+		
+		newM = new JMenuItem("새로 만들기");
+		openM = new JMenuItem("열기");
+		saveM = new JMenuItem("저장");
+		cutM = new JMenuItem("잘라내기");
+		copyM = new JMenuItem("복사");
+		pasteM = new JMenuItem("붙여넣기");
+		
+		fileM.add(newM);
+		fileM.add(openM);
+		fileM.add(saveM);
+		
+		editM.add(cutM);
+		editM.add(copyM);
+		editM.add(pasteM);
+	}
+
+	public JMenu getFileM() {
+		return fileM;
+	}
+
+	public void setFileM(JMenu fileM) {
+		this.fileM = fileM;
+	}
+
+	public JMenu getEditM() {
+		return editM;
+	}
+
+	public void setEditM(JMenu editM) {
+		this.editM = editM;
+	}
+
+	public JMenu getViewM() {
+		return viewM;
+	}
+
+	public void setViewM(JMenu viewM) {
+		this.viewM = viewM;
+	}
+	
+	
+}

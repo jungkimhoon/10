@@ -1,0 +1,50 @@
+package praccorrect;
+
+import java.util.ArrayList;
+
+import javax.swing.JTextArea;
+
+public class ScoreImpl implements Score {
+	private ArrayList<ScoreDTO> list; 
+	
+	
+	public ScoreImpl() {
+	}
+	
+	public static void main(String[] args) {
+		new ScoreForm();
+		new ScoreImpl();
+
+	}
+
+	@Override
+	public void input(ScoreDTO dto) {
+
+	}
+
+	@Override
+	public void print(JTextArea output) {
+
+	}
+
+	@Override
+	public void search(JTextArea output) {
+
+	}
+
+	@Override
+	public void tot_desc() {
+
+	}
+
+	@Override
+	public void save() {
+
+	}
+
+	@Override
+	public void load() {
+
+	}
+
+}

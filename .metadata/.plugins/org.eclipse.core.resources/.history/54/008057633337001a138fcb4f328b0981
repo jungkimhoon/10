@@ -1,0 +1,126 @@
+package swing;
+
+import java.awt.BasicStroke;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+public class DrCanvas extends Canvas {
+	private MsPaint msPaint;
+	private ArrayList<ShapeDTO> list;
+
+	public DrCanvas(MsPaint msPaint) {
+		this.msPaint = msPaint;
+		this.setBackground(new Color(255,225,255));
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		
+		
+		list = msPaint.getList();
+		for(ShapeDTO dto : list) {
+			int xx1 = dto.getX1();
+			int xx2 = dto.getX2();
+			int yy1 = dto.getY1();
+			int yy2 = dto.getY2();
+			int zz1 = dto.getZ1();
+			int zz2 = dto.getZ2();
+			
+			switch(dto.getColor()) {
+			case 0 : g.setColor(new Color(255,0,0)); break;
+			case 1 : g.setColor(new Color(200,91,2)); break;
+			case 2 : g.setColor(new Color(255,255,0)); break;
+			case 3 : g.setColor(new Color(0,255,0)); break;
+			case 4 : g.setColor(new Color(0,0,255)); break;
+			case 5 : g.setColor(new Color(24,2,176)); break;
+			case 6 : g.setColor(new Color(255,0,255)); break;
+			}
+			
+			if(dto.getFill()) {
+				if(dto.getShape() == 1)
+					g.drawLine(xx1, yy1, xx2, yy2);
+				else if(dto.getShape() == 2)
+					g.fillOval(Math.min(xx1,xx2), Math.min(yy1,yy2), Math.abs(xx2-xx1), Math.abs(yy2-yy1));
+				else if(dto.getShape() == 3)
+					g.fillRect(Math.min(xx1,xx2), Math.min(yy1,yy2), Math.abs(xx2-xx1), Math.abs(yy2-yy1));
+				else if(dto.getShape() == 4)
+					g.fillRoundRect(Math.min(xx1,xx2), Math.min(yy1,yy2), Math.abs(xx2-xx1), Math.abs(yy2-yy1), zz1, zz2);
+				else if(dto.getShape() == 4)
+					g.drawLine(xx1, yy1, xx2, yy2);
+			}else {
+				if(dto.getShape() == 1)
+					g.drawLine(xx1, yy1, xx2, yy2);
+				else if(dto.getShape() == 2)
+					g.drawOval(Math.min(xx1,xx2), Math.min(yy1,yy2), Math.abs(xx2-xx1), Math.abs(yy2-yy1));
+				else if(dto.getShape() == 3)
+					g.drawRect(Math.min(xx1,xx2), Math.min(yy1,yy2), Math.abs(xx2-xx1), Math.abs(yy2-yy1));
+				else if(dto.getShape() == 4)
+					g.drawRoundRect(Math.min(xx1,xx2), Math.min(yy1,yy2), Math.abs(xx2-xx1), Math.abs(yy2-yy1), zz1, zz2);
+				else if(dto.getShape() == 4)
+					g.drawLine(xx1, yy1, xx2, yy2);
+			}
+		}//for
+
+		int x1 = Integer.parseInt(msPaint.getX1T().getText().trim());
+		int y1 = Integer.parseInt(msPaint.getY1T().getText().trim());
+		int x2 = Integer.parseInt(msPaint.getX2T().getText().trim());
+		int y2 = Integer.parseInt(msPaint.getY2T().getText().trim());
+		int z1 = Integer.parseInt(msPaint.getZ1T().getText().trim());
+		int z2 = Integer.parseInt(msPaint.getZ2T().getText().trim());
+		
+		
+		switch(msPaint.getCombo().getSelectedIndex()) {
+		case 0 : g.setColor(new Color(255,0,0)); break;
+		case 1 : g.setColor(new Color(200,91,2)); break;
+		case 2 : g.setColor(new Color(255,255,0)); break;
+		case 3 : g.setColor(new Color(0,255,0)); break;
+		case 4 : g.setColor(new Color(0,0,255)); break;
+		case 5 : g.setColor(new Color(24,2,176)); break;
+		case 6 : g.setColor(new Color(255,0,255)); break;
+		}
+		
+		
+		if(msPaint.getFill().isSelected()) {//채워진 도형
+			if(msPaint.getLine().isSelected())
+				g.drawLine(x1, y1, x2, y2);
+			else if(msPaint.getCircle().isSelected())
+				g.fillOval(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			else if(msPaint.getRect().isSelected())
+				g.fillRect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			else if(msPaint.getRoundRect().isSelected())
+				g.fillRoundRect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1), z1, z2);
+			
+		}else {
+			if(msPaint.getLine().isSelected())
+				g.drawLine(x1, y1, x2, y2);
+			else if(msPaint.getCircle().isSelected())
+				g.drawOval(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			else if(msPaint.getRect().isSelected())
+				g.drawRect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			else if(msPaint.getRoundRect().isSelected())
+				g.drawRoundRect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1), z1, z2);
+		
+		
+		}
+	}//paint
+	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

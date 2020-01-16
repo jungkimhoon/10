@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="setShape"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="setshape"/>
+			<item value="set"/>
+			<item value="사이즈"/>
+			<item value="list"/>
+			<item value="line"/>
+			<item value="sungjukdto"/>
+			<item value="Collection"/>
+			<item value="collection"/>
+			<item value="c"/>
+			<item value="main"/>
+			<item value="keys"/>
+			<item value="com"/>
+			<item value="setscore"/>
+			<item value="shapedto"/>
+			<item value="sdto"/>
+		</list>
+		<list key="replacehistory">
+			<item value="go"/>
+			<item value="msPaint.list"/>
+			<item value="timer"/>
+			<item value="start"/>
+			<item value="stop"/>
+			<item value="list"/>
+			<item value="ar"/>
+			<item value="ar[i]"/>
+			<item value="bb"/>
+			<item value="lotto"/>
+			<item value="int"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="973"/>
+		<item key="DIALOG_Y_ORIGIN" value="496"/>
+		<item key="DIALOG_WIDTH" value="288"/>
+		<item key="DIALOG_HEIGHT" value="381"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+</section>

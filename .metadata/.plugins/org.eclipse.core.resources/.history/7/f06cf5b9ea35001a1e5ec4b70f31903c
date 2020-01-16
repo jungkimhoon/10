@@ -1,0 +1,81 @@
+package swing;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class DrCanvas extends Canvas {
+	private MsPaint msPaint;
+
+	public DrCanvas(MsPaint msPaint) {
+		this.msPaint = msPaint;
+		this.setBackground(new Color(255,225,255));
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		int x1,y1,x2,y2,z1,z2;
+		
+		for(ShapeDTO dto : msPaint.getList()) {
+			//좌표
+			x1 = dto.getX1();
+			y1 = dto.getY1();
+			x2 = dto.getX2();
+			y2 = dto.getY2();
+			z1 = dto.getZ1();
+			z2 = dto.getZ2();
+		
+		
+		//색
+		switch(msPaint.getCombo().getSelectedIndex()) {
+		case 0 : g.setColor(new Color(255,0,0)); break;
+		case 1 : g.setColor(new Color(200,91,2)); break;
+		case 2 : g.setColor(new Color(255,255,0)); break;
+		case 3 : g.setColor(new Color(0,255,0)); break;
+		case 4 : g.setColor(new Color(0,0,255)); break;
+		case 5 : g.setColor(new Color(24,2,176)); break;
+		case 6 : g.setColor(new Color(255,0,255)); break;
+		}
+		
+		//도형
+		if(dto.getFill()) {//채워진 도형
+			if(dto.getShape() == 1)
+				g.drawLine(x1, y1, x2, y2);
+			else if(dto.getShape() == 2)
+				g.fillOval(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			else if(dto.getShape() == 3)
+				g.fillRect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			else if(dto.getShape() == 4)
+				g.fillRoundRect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1), z1, z2);
+			
+		}else {//빈 도형
+			if(dto.getShape() == 1)
+				g.drawLine(x1, y1, x2, y2);
+			else if(dto.getShape() == 2)
+				g.drawOval(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			else if(dto.getShape() == 3)
+				g.drawRect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+			else if(dto.getShape() == 4)
+				g.drawRoundRect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1), z1, z2);
+			
+		}
+	}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

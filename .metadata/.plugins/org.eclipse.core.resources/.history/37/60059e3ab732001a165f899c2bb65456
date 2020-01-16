@@ -1,0 +1,47 @@
+package thread;
+
+public class RoseTest extends Thread {
+	private String name;
+	
+	public RoseTest(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public void run() {
+		for(int i=1; i<=5; i++) { //Thread[행복,5,main] [이름, 우선순위, 메소드]
+			System.out.println(name + "\t" + Thread.currentThread()+"\t i = "+i);
+			
+		}
+		System.out.println(name + "\t종료 ");
+	}
+	
+	public static void main(String[] args) {
+		RoseTest aa = new RoseTest("안락"); //쓰레드 생성
+		RoseTest bb = new RoseTest("행복"); //쓰레드 생성
+		RoseTest cc = new RoseTest("쾌락"); //쓰레드 생성
+		
+		
+		aa.start(); //쓰레드 시작
+		try {
+			aa.join(); //쓰레드가 끝날때까지 대기 //최우선 실행
+		}catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		bb.start(); //쓰레드 시작
+		cc.start(); //쓰레드 시작
+		
+		//우선순위 1~10, 10이 제일 빨리 끝남, default = 5
+//		aa.setPriority(MAX_PRIORITY);
+//		bb.setPriority(NORM_PRIORITY);
+//		cc.setPriority(MIN_PRIORITY);
+		
+		aa.setName("안락"); //쓰레드 이름 삽입
+		bb.setName("행복");
+		cc.setName("쾌락");
+		
+	
+	
+	}
+}

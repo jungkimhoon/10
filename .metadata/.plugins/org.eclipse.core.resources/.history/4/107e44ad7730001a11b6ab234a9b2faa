@@ -1,0 +1,102 @@
+package interface_1;
+
+import java.awt.Button;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.Panel;
+
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Calculator {
+	private JFrame frame = new JFrame();
+	private JButton[] b = new JButton[18];
+	
+	
+	public Calculator() {
+
+		b[0] = new JButton(".");
+		b[1] = new JButton("0");
+		b[2] = new JButton("=");
+		b[3] = new JButton("+");
+		b[4] = new JButton("1");
+		b[5] = new JButton("2");
+		b[6] = new JButton("3");
+		b[7] = new JButton("-");
+		b[8] = new JButton("4");
+		b[9] = new JButton("5");
+		b[10] = new JButton("6");
+		b[11] = new JButton("X");
+		b[12] = new JButton("7");
+		b[13] = new JButton("8");
+		b[14] = new JButton("9");
+		b[15] = new JButton("/");
+		b[16] = new JButton("←");
+		b[17] = new JButton("C");
+		
+		JPanel p = new JPanel(new GridLayout(5,4,2,2));
+		
+		p.add(b[0]);
+		p.add(b[1]);
+		p.add(b[2]);
+		p.add(b[3]);
+	
+		
+		p.add(b[4]);
+		p.add(b[5]);
+		p.add(b[6]);
+		p.add(b[7]);
+		
+		
+		p.add(b[8]);
+		p.add(b[9]);
+		p.add(b[10]);
+		p.add(b[11]);
+		
+		
+		p.add(b[12]);
+		p.add(b[13]);
+		p.add(b[14]);
+		p.add(b[15]);
+		
+		p.add(b[16]);
+		p.add(b[17]);
+		
+		
+		frame.setTitle("고돌이동");
+		frame.setBounds(800,400,500,500);
+		frame.setVisible(true);
+		this.getContentPane().add(p);
+       
+      
+	
+		
+		
+	}
+	
+	
+
+	private Container getContentPane() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	private void addWindowListener(Calculator calculator) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new Calculator();
+
+	}
+
+}

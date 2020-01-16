@@ -1,0 +1,85 @@
+package network;
+			
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+//protocolClient   -   buffer   -   socket   -   socket   -   buffer   -   protocolServer 
+//	bufferedWriter  OutputStreamReader	getOutputStream();
+//	bufferedReader  inputStreamReader	getInputStream(); 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class ProtocolClient {
+	private Socket socket;
+	private BufferedReader br;
+	private BufferedWriter bw;
+	private BufferedReader keyboard;
+	
+	public ProtocolClient() {
+		try {
+			socket = new Socket("192.168.0.131",9500); //소켓이 io를 쥐고있다.
+			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			
+			keyboard = new BufferedReader(new InputStreamReader(System.in));
+			
+		} catch (UnknownHostException e) { //호스트 없을떄
+			System.out.println("서버 못찾음");
+			e.printStackTrace();
+			System.exit(0);
+		} catch (IOException e) { //통신중일때
+			// TODO Auto-generated catch block
+			System.out.println("서버와 연결이 안되었습니다.");
+			e.printStackTrace();
+			System.exit(0);
+		} //9500 = 포트번호
+		
+		String msg, line;
+		while(true) {
+	
+			try {
+				//보내는 쪽
+				/*
+				 *  "100:angel"
+				 *  "200:angel"
+				 *  "300:angel:안녕"
+				 */
+				msg = keyboard.readLine(); //엔터 앞까지 읽는다
+				bw.write(msg+"\n"); //readLine은 엔터 앞까지 읽으므로 엔터를 보내줘야 서버측에서 받음
+				bw.flush(); //버퍼를 비워라. 그래야 다음 데이터가 들어온다.
+				
+				//받는 쪽
+				/*
+				 * angel님 입장
+				 * angel님 퇴장
+				 * [angel] 안녕
+				 * 
+				 */
+				
+				line = br.readLine();
+				System.out.println(line);
+				
+				String[] ar = msg.split(":");
+				if(ar[0].equals("200")) {
+					br.close();
+					bw.close();
+					socket.close();
+					
+					keyboard.close();
+					
+					System.exit(0);
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		new ProtocolClient();
+	}
+}
